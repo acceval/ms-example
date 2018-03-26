@@ -22,6 +22,16 @@
 	</root>
 
 	<logger name="org.springframework">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web.filter">
+		<level value="debug" />
+	</logger>
+	<logger name="com.fasterxml.jackson">
+		<level value="debug" />
+	</logger>
+	<logger name="org.springframework.web.servlet.mvc">
 		<level value="debug" />
 	</logger>
 </configuration>

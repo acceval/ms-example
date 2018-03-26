@@ -35,12 +35,12 @@ public class ExampleController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> add(@RequestBody Example example) {
+	public ResponseEntity<ResponseWrapper> add(@RequestBody ExampleDTO example) {
 		if (example == null) {
 			return ResponseEntity.badRequest().build();
 		}
 
-		Example myExample = example;
+		ExampleDTO myExample = example;
 		try {
 			myExample = service.addExample(example);
 		} catch (Exception ex) {

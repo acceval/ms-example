@@ -1,4 +1,4 @@
-package com.acceval.msexample.example.impl;
+package com.acceval.msexample.example;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

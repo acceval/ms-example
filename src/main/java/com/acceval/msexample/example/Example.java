@@ -3,11 +3,16 @@ package com.acceval.msexample.example;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
+import com.acceval.msexample.type.Type;
 import lombok.Data;
 
 /**
@@ -22,9 +27,18 @@ public @Data class Example {
 	private long id = 0;
 	private String name = "";
 	private LocalDate date = LocalDate.MIN;
-	private String type = "";
-	private List<String> type2 = new ArrayList<>();
 
-	private String rType = "";
-	private List<String> cType = new ArrayList<>();
+	@ManyToOne
+	private Type type;
+
+	@ManyToOne
+	private Type radioType;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable
+	private List<Type> type2 = new ArrayList<>();
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable
+	private List<Type> checkboxType = new ArrayList<>();
 }

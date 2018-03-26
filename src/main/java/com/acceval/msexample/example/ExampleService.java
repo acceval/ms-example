@@ -12,5 +12,5 @@ import com.acceval.core.repository.QueryResult;
 public interface ExampleService {
 	QueryResult query(MultiValueMap<String, String> mapParam);
 
-	Example addExample(Example example);
+	ExampleDTO addExample(ExampleDTO dto);
 }

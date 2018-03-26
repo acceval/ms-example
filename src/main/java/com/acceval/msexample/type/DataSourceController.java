@@ -2,12 +2,17 @@ package com.acceval.msexample.type;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acceval.core.microservice.model.LabelValue;
+import lombok.RequiredArgsConstructor;
 
 /**
  * TODO: Document this
@@ -16,18 +21,36 @@ import com.acceval.core.microservice.model.LabelValue;
  */
 @RestController
 @RequestMapping("/datasource")
+@RequiredArgsConstructor
 public class DataSourceController {
+	private final TypeRepository repo;
+
 	@RequestMapping(method = RequestMethod.GET, value = "/type")
 	public List<LabelValue> getTypeDataSource() {
-		return Arrays.asList(
-				new LabelValue("Go", "go"),
-				new LabelValue("Java", "java"),
-				new LabelValue("Kotlin", "kt"),
-				new LabelValue("Groovy", "groovy"),
-				new LabelValue("Typescript", "ts"),
-				new LabelValue("Javascript", "js"),
-				new LabelValue("HTML", "html"),
-				new LabelValue("CSS", "css")
-		);
+		return StreamSupport.stream(repo.findAll().spliterator(), false)
+				.map(type -> new LabelValue(type.getLabel(), String.valueOf(type.getId())))
+				.collect(Collectors.toList());
+	}
+
+	@PostConstruct
+	public void initTypes() {
+		// init type values
+		repo.saveAll(Arrays.asList(
+				createType("Go", "go"),
+				createType("Java", "java"),
+				createType("Kotlin", "kt"),
+				createType("Groovy", "groovy"),
+				createType("Typescript", "ts"),
+				createType("Javascript", "js"),
+				createType("HTML", "html"),
+				createType("CSS", "css")
+		));
+	}
+
+	private Type createType(String label, String value) {
+		Type t = new Type();
+		t.setLabel(label);
+		t.setValue(label);
+		return t;
 	}
 }
