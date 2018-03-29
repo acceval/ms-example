@@ -74,7 +74,7 @@ public class ExampleController {
 		}
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{ids}")
 	public ResponseEntity<ResponseWrapper<Void>> delete(@PathVariable long[] ids) {
 		try {
 			service.deleteExamples(ids);
