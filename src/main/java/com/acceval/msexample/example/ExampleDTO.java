@@ -18,10 +18,11 @@ import lombok.Data;
 	private long id = 0;
 	private String name = "";
 	private LocalDate date = LocalDate.MIN;
-	private Long type;
-	private Long radioType;
+	private long type;
+	private long radioType;
 	private List<Long> type2 = new ArrayList<>();
 	private List<Long> checkboxType = new ArrayList<>();
+	private boolean checkbox;
 
 	public static ExampleDTO mapToDTO(Example example) {
 		ExampleDTO dto = new ExampleDTO();
@@ -35,6 +36,7 @@ import lombok.Data;
 				.toList()) : Collections.emptyList();
 		dto.checkboxType = example.getCheckboxType() != null ? example.getCheckboxType().stream().map(Type::getId).collect(Collectors
 				.toList()) : Collections.emptyList();
+		dto.checkbox = example.isCheckbox();
 
 		return dto;
 	}

@@ -41,4 +41,6 @@ public @Data class Example {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable
 	private List<Type> checkboxType = new ArrayList<>();
+
+	private boolean checkbox;
 }

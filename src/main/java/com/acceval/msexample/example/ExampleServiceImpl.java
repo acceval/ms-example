@@ -1,5 +1,11 @@
 package com.acceval.msexample.example;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nonnull;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
@@ -21,8 +27,11 @@ public class ExampleServiceImpl implements ExampleService {
 	private final TypeRepository typeRepository;
 
 	@Override
-	public QueryResult query(MultiValueMap<String, String> mapParam) {
-		return repository.queryByMapParam(mapParam);
+	public QueryResult<ExampleDTO> query(MultiValueMap<String, String> mapParam) {
+		QueryResult<Example> queryResult = repository.queryByMapParam(mapParam);
+
+		return new QueryResult<>(queryResult.getTotal(),
+				queryResult.getResults().stream().map(ExampleDTO::mapToDTO).collect(Collectors.toList()));
 	}
 
 	@Override
@@ -30,6 +39,31 @@ public class ExampleServiceImpl implements ExampleService {
 		Example example = new Example();
 		example = mergeDTO(example, dto);
 		return ExampleDTO.mapToDTO(repository.save(example));
+	}
+
+	@Nonnull
+	@Override
+	public Optional<ExampleDTO> updateExample(long id, ExampleDTO dto) {
+		Optional<Example> example = repository.findById(id);
+		if (!example.isPresent()) {
+			return Optional.empty();
+		}
+
+		Example ex = mergeDTO(example.get(), dto);
+		return Optional.of(ExampleDTO.mapToDTO(repository.save(ex)));
+	}
+
+	@Nonnull
+	@Override
+	public Optional<ExampleDTO> getExample(long id) {
+		return repository.findById(id).map(ExampleDTO::mapToDTO);
+	}
+
+	@Override
+	public void deleteExamples(long... id) {
+		Iterable<Example> examples = repository.findAllById(Arrays.stream(id).boxed().collect(Collectors.toList()));
+
+		repository.deleteAll(examples);
 	}
 
 	private Example mergeDTO(Example example, ExampleDTO dto) {
@@ -41,6 +75,8 @@ public class ExampleServiceImpl implements ExampleService {
 
 		example.setType2(toList(typeRepository.findAllById(dto.getType2())));
 		example.setCheckboxType(toList(typeRepository.findAllById(dto.getCheckboxType())));
+
+		example.setCheckbox(dto.isCheckbox());
 
 		return example;
 	}
