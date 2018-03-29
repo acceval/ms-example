@@ -3,7 +3,6 @@ package com.acceval.msexample.example;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,11 +33,11 @@ public @Data class Example {
 	@ManyToOne
 	private Type radioType;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable
 	private List<Type> type2 = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable
 	private List<Type> checkboxType = new ArrayList<>();
 
