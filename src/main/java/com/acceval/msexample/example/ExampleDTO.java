@@ -23,6 +23,7 @@ import lombok.Data;
 	private List<Long> type2 = new ArrayList<>();
 	private List<Long> checkboxType = new ArrayList<>();
 	private boolean checkbox;
+	private long autocomplete;
 
 	public static ExampleDTO mapToDTO(Example example) {
 		ExampleDTO dto = new ExampleDTO();
@@ -37,6 +38,7 @@ import lombok.Data;
 		dto.checkboxType = example.getCheckboxType() != null ? example.getCheckboxType().stream().map(Type::getId).collect(Collectors
 				.toList()) : Collections.emptyList();
 		dto.checkbox = example.isCheckbox();
+		dto.autocomplete = example.getAutocomplete() != null ? example.getAutocomplete().getId() : 0;
 
 		return dto;
 	}

@@ -41,5 +41,8 @@ public @Data class Example {
 	@JoinTable
 	private List<Type> checkboxType = new ArrayList<>();
 
+	@ManyToOne
+	private Type autocomplete;
+
 	private boolean checkbox;
 }

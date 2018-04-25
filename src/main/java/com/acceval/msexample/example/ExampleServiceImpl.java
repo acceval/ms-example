@@ -78,6 +78,8 @@ public class ExampleServiceImpl implements ExampleService {
 
 		example.setCheckbox(dto.isCheckbox());
 
+		example.setAutocomplete(typeRepository.findById(dto.getAutocomplete()).orElse(null));
+
 		return example;
 	}
 }
