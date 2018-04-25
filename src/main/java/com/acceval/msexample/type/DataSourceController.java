@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +27,10 @@ public class DataSourceController {
 	private final TypeRepository repo;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/type")
-	public List<LabelValue> getTypeDataSource(@RequestParam("q") String query) {
+	public List<LabelValue> getTypeDataSource(@RequestParam(value = "q", defaultValue = "") String query) {
 		return StreamSupport.stream(repo.findAll().spliterator(), false)
-				.filter(type -> query == null || type.getLabel().toLowerCase().contains(query.toLowerCase()))
+				.filter(type -> StringUtils.isBlank(query) || type.getLabel().toLowerCase().contains(query
+						.toLowerCase()))
 				.map(type -> new LabelValue(type.getLabel(), String.valueOf(type.getId())))
 				.collect(Collectors.toList());
 	}
