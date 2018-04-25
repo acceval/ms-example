@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acceval.core.microservice.model.LabelValue;
@@ -26,8 +26,9 @@ public class DataSourceController {
 	private final TypeRepository repo;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/type")
-	public List<LabelValue> getTypeDataSource() {
+	public List<LabelValue> getTypeDataSource(@RequestParam("q") String query) {
 		return StreamSupport.stream(repo.findAll().spliterator(), false)
+				.filter(type -> query == null || type.getLabel().toLowerCase().contains(query.toLowerCase()))
 				.map(type -> new LabelValue(type.getLabel(), String.valueOf(type.getId())))
 				.collect(Collectors.toList());
 	}
