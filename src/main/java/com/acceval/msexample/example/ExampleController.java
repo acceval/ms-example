@@ -5,8 +5,12 @@ import javax.annotation.Nonnull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,5 +87,14 @@ public class ExampleController {
 			log.error(ex.getMessage(), ex);
 			return ResponseWrapper.exceptionResponse(ex);
 		}
+	}
+
+	@GetMapping("upload.csv")
+	public ResponseEntity<Resource> downloadCsvTemplate() {
+		Resource res = new ClassPathResource("example.csv");
+
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType("text/csv"))
+				.body(res);
 	}
 }
