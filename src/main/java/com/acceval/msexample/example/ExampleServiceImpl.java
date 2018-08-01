@@ -1,19 +1,21 @@
 package com.acceval.msexample.example;
 
+import static org.apache.commons.collections4.IterableUtils.toList;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
 import com.acceval.core.repository.QueryResult;
 import com.acceval.msexample.type.TypeRepository;
-import lombok.RequiredArgsConstructor;
 
-import static org.apache.commons.collections4.IterableUtils.toList;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Example service implementation
@@ -23,8 +25,11 @@ import static org.apache.commons.collections4.IterableUtils.toList;
 @Service
 @RequiredArgsConstructor
 public class ExampleServiceImpl implements ExampleService {
-	private final ExampleRepository repository;
-	private final TypeRepository typeRepository;
+	
+	@Autowired
+	private ExampleRepository repository;
+	@Autowired
+	private TypeRepository typeRepository;
 
 	@Override
 	public QueryResult<ExampleDTO> query(MultiValueMap<String, String> mapParam) {

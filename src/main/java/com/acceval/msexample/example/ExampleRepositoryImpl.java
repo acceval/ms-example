@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.acceval.core.repository.BaseRepository;
 import com.acceval.core.repository.BaseRepositoryImpl;
 import com.acceval.msexample.example.Example;
@@ -19,7 +21,8 @@ public class ExampleRepositoryImpl extends BaseRepositoryImpl implements BaseRep
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	private final EntityManagerFactory entityManagerFactory;
+	@Autowired
+	private EntityManagerFactory entityManagerFactory;
 
 	@Override
 	protected EntityManagerFactory getEntityManagerFactory() {

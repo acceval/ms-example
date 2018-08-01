@@ -4,15 +4,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acceval.core.microservice.model.LabelValue;
+
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -24,7 +27,9 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/datasource")
 @RequiredArgsConstructor
 public class DataSourceController {
-	private final TypeRepository repo;
+	
+	@Autowired
+	private TypeRepository repo;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/type")
 	public List<LabelValue> getTypeDataSource(@RequestParam(value = "q", defaultValue = "") String query) {
@@ -37,6 +42,7 @@ public class DataSourceController {
 
 	@PostConstruct
 	public void initTypes() {
+		 
 		// init type values
 		repo.saveAll(Arrays.asList(
 				createType("Go", "go"),

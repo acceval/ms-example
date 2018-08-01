@@ -1,10 +1,12 @@
 package com.acceval.msexample.example;
 
 import java.util.Optional;
+
 import javax.annotation.Nonnull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.acceval.core.microservice.model.ResponseWrapper;
 import com.acceval.core.repository.QueryResult;
+
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -32,7 +35,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ExampleController {
 	private static final Logger log = LoggerFactory.getLogger(ExampleController.class);
-	private final ExampleService service;
+	
+	@Autowired
+	private ExampleService service;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/search")
 	public QueryResult search(@RequestParam @Nonnull MultiValueMap<String, String> mapParam) {
