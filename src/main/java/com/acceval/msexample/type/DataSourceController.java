@@ -59,7 +59,7 @@ public class DataSourceController {
 	private Type createType(String label, String value) {
 		Type t = new Type();
 		t.setLabel(label);
-		t.setValue(label);
+		t.setValue(value);
 		return t;
 	}
 }

@@ -1,17 +1,16 @@
 package com.acceval.msexample;
 
-import javax.servlet.Filter;
-
+import com.acceval.core.jackson.module.APIJavaTimeModule;
+import com.fasterxml.jackson.databind.Module;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
-import com.acceval.core.jackson.module.APIJavaTimeModule;
-import com.fasterxml.jackson.databind.Module;
+import javax.servlet.Filter;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class MsExampleApplication {
 
 	public static void main(String[] args) {
@@ -22,7 +21,7 @@ public class MsExampleApplication {
 	public Module provideModule() {
 		return new APIJavaTimeModule();
 	}
-	
+
 	@Bean
 	public Filter someFilterRegistration() {
 		CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
