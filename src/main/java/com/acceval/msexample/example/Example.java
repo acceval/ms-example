@@ -12,7 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.acceval.msexample.type.Type;
-import lombok.Data;
 
 /**
  * Example data class
@@ -20,7 +19,7 @@ import lombok.Data;
  * @author Julian
  */
 @Entity
-public @Data class Example {
+public class Example {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id = 0;

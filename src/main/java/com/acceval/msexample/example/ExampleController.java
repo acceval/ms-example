@@ -1,9 +1,7 @@
 package com.acceval.msexample.example;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-
+import com.acceval.core.microservice.model.ResponseWrapper;
+import com.acceval.core.repository.QueryResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +10,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.acceval.core.microservice.model.ResponseWrapper;
-import com.acceval.core.repository.QueryResult;
-
-import lombok.RequiredArgsConstructor;
+import javax.annotation.Nonnull;
+import java.util.Optional;
 
 /**
  * Example rest controller for example process
@@ -32,10 +22,9 @@ import lombok.RequiredArgsConstructor;
  */
 @RestController
 @RequestMapping("/example")
-@RequiredArgsConstructor
 public class ExampleController {
 	private static final Logger log = LoggerFactory.getLogger(ExampleController.class);
-	
+
 	@Autowired
 	private ExampleService service;
 

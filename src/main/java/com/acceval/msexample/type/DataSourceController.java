@@ -1,12 +1,6 @@
 package com.acceval.msexample.type;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import javax.annotation.PostConstruct;
-
+import com.acceval.core.microservice.model.LabelValue;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acceval.core.microservice.model.LabelValue;
-
-import lombok.RequiredArgsConstructor;
+import javax.annotation.PostConstruct;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * TODO: Document this
@@ -25,9 +21,8 @@ import lombok.RequiredArgsConstructor;
  */
 @RestController
 @RequestMapping("/datasource")
-@RequiredArgsConstructor
 public class DataSourceController {
-	
+
 	@Autowired
 	private TypeRepository repo;
 
@@ -42,7 +37,7 @@ public class DataSourceController {
 
 	@PostConstruct
 	public void initTypes() {
-		 
+
 		// init type values
 		repo.saveAll(Arrays.asList(
 				createType(100000000, "Go", "go"),

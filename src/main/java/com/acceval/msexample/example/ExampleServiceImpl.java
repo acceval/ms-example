@@ -1,21 +1,17 @@
 package com.acceval.msexample.example;
 
-import static org.apache.commons.collections4.IterableUtils.toList;
-
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import javax.annotation.Nonnull;
-
+import com.acceval.core.repository.QueryResult;
+import com.acceval.msexample.type.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
-import com.acceval.core.repository.QueryResult;
-import com.acceval.msexample.type.TypeRepository;
+import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import lombok.RequiredArgsConstructor;
+import static org.apache.commons.collections4.IterableUtils.toList;
 
 /**
  * Example service implementation
@@ -23,9 +19,8 @@ import lombok.RequiredArgsConstructor;
  * @author Julian
  */
 @Service
-@RequiredArgsConstructor
 public class ExampleServiceImpl implements ExampleService {
-	
+
 	@Autowired
 	private ExampleRepository repository;
 	@Autowired

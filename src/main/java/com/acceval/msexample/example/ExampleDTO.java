@@ -1,20 +1,19 @@
 package com.acceval.msexample.example;
 
+import com.acceval.msexample.type.Type;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.acceval.msexample.type.Type;
-import lombok.Data;
-
 /**
  * Form class for example data object
  *
  * @author Julian
  */
-@Data class ExampleDTO {
+class ExampleDTO {
 	private long id = 0;
 	private String name = "";
 	private LocalDate date = LocalDate.MIN;
