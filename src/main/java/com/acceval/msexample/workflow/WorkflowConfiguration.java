@@ -33,4 +33,10 @@ public class WorkflowConfiguration {
 	Workflow exampleWorkflow2() {
 		return new Workflow("workflow/exampleWorkflow2");
 	}
+
+	@Qualifier(WorkflowQualifiers.EXAMPLE_WORKFLOW_3)
+	@Bean
+	Workflow exampleWorkflow3() {
+		return new Workflow("workflow/exampleWorkflow3");
+	}
 }
