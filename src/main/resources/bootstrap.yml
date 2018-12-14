@@ -7,3 +7,5 @@ spring:
       fail-fast: false
       password: password
       username: user
+  rabbitmq:
+    host: rabbitmq
