@@ -3,6 +3,8 @@ package com.acceval.msexample.workflow;
 import com.acceval.workflow.client.Workflow;
 import com.acceval.workflow.client.WorkflowRegistrar;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -29,17 +31,17 @@ public class ExampleWorkflowController {
 	}
 
 	@PostMapping(path = "/start1")
-	public void startWorkflow1(@RequestBody ExampleWorkflowData data) {
+	public void startWorkflow1(@RequestHeader("user") String user, @RequestBody ExampleWorkflowData data) {
 		workflow1.start(data);
 	}
 
 	@PostMapping(path = "/start2")
-	public void startWorkflow2(@RequestBody ExampleWorkflowData data) {
+	public void startWorkflow2(@RequestHeader("user") String user, @RequestBody ExampleWorkflowData data) {
 		workflow2.start(data);
 	}
 
 	@PostMapping(path = "/start3")
-	public void startWorkflow3(@RequestBody ExampleWorkflowData data) {
+	public void startWorkflow3(@RequestHeader("user") String user, @RequestBody ExampleWorkflowData data) {
 		workflow3.start(data);
 	}
 
