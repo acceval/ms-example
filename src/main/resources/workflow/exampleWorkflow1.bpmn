@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0tz3wpa" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.0.3">
   <bpmn:process id="exampleWorkflow1" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1" camunda:initiator="pewpew">
+    <bpmn:startEvent id="StartEvent_1" camunda:initiator="userId">
       <bpmn:outgoing>SequenceFlow_0pyzsu0</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0pyzsu0" sourceRef="StartEvent_1" targetRef="Task_1val8e4" />
-    <bpmn:serviceTask id="Task_1val8e4" name="Initialize Variables" camunda:class="com.acceval.msexample.workflow.ExampleWorkflowService">
+    <bpmn:serviceTask id="Task_1val8e4" name="Initialize Variables" camunda:class="com.acceval.msexample.workflow.ExampleSignalableWorkflowService">
       <bpmn:extensionElements>
         <camunda:field name="param1">
           <camunda:string>myParam1</camunda:string>
@@ -17,7 +17,7 @@
       <bpmn:incoming>SequenceFlow_0pyzsu0</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1u1fkno</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Task_0yekt7t" name="Await approval">
+    <bpmn:userTask id="Task_0yekt7t" name="Await approval" camunda:assignee="${assigner.reportTo(userId)}">
       <bpmn:incoming>SequenceFlow_1u1fkno</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0qi1730</bpmn:outgoing>
     </bpmn:userTask>

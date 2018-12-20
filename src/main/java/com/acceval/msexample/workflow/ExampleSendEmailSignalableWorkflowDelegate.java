@@ -1,10 +1,10 @@
 package com.acceval.msexample.workflow;
 
-import com.acceval.workflow.client.WorkflowListenerDelegate;
+import com.acceval.workflow.client.SignalableWorkflowListenerDelegate;
 import com.acceval.workflow.client.WorkflowListenerDelegateParams;
 import com.acceval.workflow.client.signal.SignalCommands;
 
-public class ExampleSendEmailWorkflowDelegate implements WorkflowListenerDelegate {
+public class ExampleSendEmailSignalableWorkflowDelegate implements SignalableWorkflowListenerDelegate {
 	@Override
 	public void execute(SignalCommands commands, WorkflowListenerDelegateParams params) {
 		try {

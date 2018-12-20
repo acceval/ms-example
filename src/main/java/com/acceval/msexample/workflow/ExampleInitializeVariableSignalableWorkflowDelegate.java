@@ -1,7 +1,7 @@
 package com.acceval.msexample.workflow;
 
 import com.acceval.msexample.type.TypeRepository;
-import com.acceval.workflow.client.WorkflowListenerDelegate;
+import com.acceval.workflow.client.SignalableWorkflowListenerDelegate;
 import com.acceval.workflow.client.WorkflowListenerDelegateParams;
 import com.acceval.workflow.client.signal.SignalCommands;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.StreamSupport;
 
-public class ExampleInitializeVariableWorkflowDelegate implements WorkflowListenerDelegate {
+public class ExampleInitializeVariableSignalableWorkflowDelegate implements SignalableWorkflowListenerDelegate {
 	@Autowired
 	private TypeRepository typeRepository;
 

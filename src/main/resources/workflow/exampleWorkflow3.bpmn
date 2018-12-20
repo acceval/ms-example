@@ -5,12 +5,12 @@
       <bpmn:outgoing>SequenceFlow_1pl4sqy</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1pl4sqy" sourceRef="StartEvent_1" targetRef="Task_1kwnv3z" />
-    <bpmn:serviceTask id="Task_1kwnv3z" name="Initialize Variables" camunda:class="com.acceval.msexample.workflow.ExampleInitializeVariableWorkflowDelegate">
+    <bpmn:serviceTask id="Task_1kwnv3z" name="Initialize Variables" camunda:class="com.acceval.msexample.workflow.ExampleInitializeVariableSignalableWorkflowDelegate">
       <bpmn:incoming>SequenceFlow_1pl4sqy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0de5947</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0de5947" sourceRef="Task_1kwnv3z" targetRef="Task_1n7b5um" />
-    <bpmn:serviceTask id="Task_1n7b5um" name="Send email" camunda:class="com.acceval.msexample.workflow.ExampleSendEmailWorkflowDelegate">
+    <bpmn:serviceTask id="Task_1n7b5um" name="Send email" camunda:class="com.acceval.msexample.workflow.ExampleSendEmailSignalableWorkflowDelegate">
       <bpmn:incoming>SequenceFlow_0de5947</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_09sxx2b</bpmn:outgoing>
     </bpmn:serviceTask>
