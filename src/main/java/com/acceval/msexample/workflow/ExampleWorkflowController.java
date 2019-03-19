@@ -32,17 +32,17 @@ public class ExampleWorkflowController {
 
 	@PostMapping(path = "/start1")
 	public void startWorkflow1(@RequestHeader("user") String user, @RequestBody ExampleWorkflowData data) {
-		workflow1.start("1", data);
+		workflow1.start("1", null, data);
 	}
 
 	@PostMapping(path = "/start2")
 	public void startWorkflow2(@RequestHeader("user") String user, @RequestBody ExampleWorkflowData data) {
-		workflow2.start("1", data);
+		workflow2.start("1", null, data);
 	}
 
 	@PostMapping(path = "/start3")
 	public void startWorkflow3(@RequestHeader("user") String user, @RequestBody ExampleWorkflowData data) {
-		workflow3.start("1", data);
+		workflow3.start("1", null, data);
 	}
 
 	@GetMapping(path = "/register")
