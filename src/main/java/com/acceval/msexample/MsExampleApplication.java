@@ -19,6 +19,7 @@ public class MsExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MsExampleApplication.class, args);
+		// testing
 	}
 
 	@Bean
