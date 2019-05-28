@@ -21,6 +21,7 @@ public class MsExampleApplication {
 		// Testing use
 		SpringApplication.run(MsExampleApplication.class, args);
 		// testing
+		// test
 	}
 
 	@Bean
