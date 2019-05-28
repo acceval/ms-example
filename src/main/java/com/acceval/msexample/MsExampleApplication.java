@@ -18,7 +18,10 @@ import javax.servlet.Filter;
 public class MsExampleApplication {
 	//tessssssst
 	public static void main(String[] args) {
+		// Testing use
 		SpringApplication.run(MsExampleApplication.class, args);
+		// testing
+		// test
 	}
 
 	@Bean
