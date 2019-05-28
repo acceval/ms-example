@@ -20,6 +20,7 @@ public class MsExampleApplication {
 	public static void main(String[] args) {
 		// Testing use
 		SpringApplication.run(MsExampleApplication.class, args);
+		// testing
 	}
 
 	@Bean

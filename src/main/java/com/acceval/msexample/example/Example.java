@@ -26,6 +26,8 @@ public class Example {
 	private String name = "";
 	private LocalDate date = LocalDate.MIN;
 
+	//test
+	
 	@ManyToOne
 	private Type type;
 
