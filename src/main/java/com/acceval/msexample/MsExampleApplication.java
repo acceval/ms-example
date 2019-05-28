@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import javax.servlet.Filter;
-
+	//testing
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class MsExampleApplication {
