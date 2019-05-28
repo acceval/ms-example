@@ -16,7 +16,7 @@ import javax.servlet.Filter;
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class MsExampleApplication {
-
+	//tessssssst
 	public static void main(String[] args) {
 		SpringApplication.run(MsExampleApplication.class, args);
 	}
