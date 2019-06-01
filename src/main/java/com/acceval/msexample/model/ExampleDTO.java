@@ -1,4 +1,4 @@
-package com.acceval.msexample.example;
+package com.acceval.msexample.model;
 
 import com.acceval.msexample.type.Type;
 
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  *
  * @author Julian
  */
-class ExampleDTO {
+public class ExampleDTO {
 	private long id = 0;
 	private String name = "";
 	private LocalDate date = LocalDate.MIN;

@@ -1,7 +1,9 @@
-package com.acceval.msexample.example;
+package com.acceval.msexample.repository;
 
 import com.acceval.core.repository.BaseRepository;
 import com.acceval.core.repository.BaseRepositoryImpl;
+import com.acceval.msexample.model.Example;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;

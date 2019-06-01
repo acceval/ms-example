@@ -1,4 +1,4 @@
-package com.acceval.msexample.example;
+package com.acceval.msexample.service;
 
 import java.util.Optional;
 
@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import org.springframework.util.MultiValueMap;
 
 import com.acceval.core.repository.QueryResult;
+import com.acceval.msexample.model.ExampleDTO;
 
 /**
  * Example service

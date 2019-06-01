@@ -1,17 +1,22 @@
-package com.acceval.msexample.example;
+package com.acceval.msexample.service;
 
-import com.acceval.core.repository.QueryResult;
-import com.acceval.msexample.type.TypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
+import static org.apache.commons.collections4.IterableUtils.toList;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static org.apache.commons.collections4.IterableUtils.toList;
+import javax.annotation.Nonnull;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
+
+import com.acceval.core.repository.QueryResult;
+import com.acceval.msexample.model.Example;
+import com.acceval.msexample.model.ExampleDTO;
+import com.acceval.msexample.repository.ExampleRepository;
+import com.acceval.msexample.type.TypeRepository;
 
 /**
  * Example service implementation
@@ -44,7 +49,7 @@ public class ExampleServiceImpl implements ExampleService {
 	@Nonnull
 	@Override
 	public Optional<ExampleDTO> updateExample(long id, ExampleDTO dto) {
-		Optional<Example> example = repository.findById(id);
+		Optional<Example> example = Optional.of(repository.findOne(id));
 		if (!example.isPresent()) {
 			return Optional.empty();
 		}
@@ -56,29 +61,29 @@ public class ExampleServiceImpl implements ExampleService {
 	@Nonnull
 	@Override
 	public Optional<ExampleDTO> getExample(long id) {
-		return repository.findById(id).map(ExampleDTO::mapToDTO);
+		return Optional.of(ExampleDTO.mapToDTO(repository.findOne(id)));
 	}
 
 	@Override
 	public void deleteExamples(long... id) {
-		Iterable<Example> examples = repository.findAllById(Arrays.stream(id).boxed().collect(Collectors.toList()));
+		Iterable<Example> examples = repository.findAll(Arrays.stream(id).boxed().collect(Collectors.toList()));
 
-		repository.deleteAll(examples);
+		repository.delete(examples);
 	}
 
 	private Example mergeDTO(Example example, ExampleDTO dto) {
 		example.setName(dto.getName());
 		example.setDate(dto.getDate());
 
-		example.setType(typeRepository.findById(dto.getType()).orElse(null));
-		example.setRadioType(typeRepository.findById(dto.getRadioType()).orElse(null));
+		example.setType(typeRepository.findOne(dto.getType()));
+		example.setRadioType(typeRepository.findOne(dto.getRadioType()));
 
-		example.setType2(toList(typeRepository.findAllById(dto.getType2())));
-		example.setCheckboxType(toList(typeRepository.findAllById(dto.getCheckboxType())));
+		example.setType2(toList(typeRepository.findAll(dto.getType2())));
+		example.setCheckboxType(toList(typeRepository.findAll(dto.getCheckboxType())));
 
 		example.setCheckbox(dto.isCheckbox());
 
-		example.setAutocomplete(typeRepository.findById(dto.getAutocomplete()).orElse(null));
+		example.setAutocomplete(typeRepository.findOne(dto.getAutocomplete()));
 
 		return example;
 	}

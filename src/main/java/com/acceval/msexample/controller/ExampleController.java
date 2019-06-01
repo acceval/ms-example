@@ -1,7 +1,10 @@
-package com.acceval.msexample.example;
+package com.acceval.msexample.controller;
 
 import com.acceval.core.microservice.model.ResponseWrapper;
 import com.acceval.core.repository.QueryResult;
+import com.acceval.msexample.model.ExampleDTO;
+import com.acceval.msexample.service.ExampleService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

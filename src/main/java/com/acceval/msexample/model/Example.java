@@ -1,4 +1,4 @@
-package com.acceval.msexample.example;
+package com.acceval.msexample.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
