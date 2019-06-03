@@ -1,6 +1,6 @@
 package com.acceval.msexample.workflow;
 
-import com.acceval.msexample.type.TypeRepository;
+import com.acceval.msexample.repository.TypeRepository;
 import com.acceval.workflow.client.SignalableWorkflowListenerDelegate;
 import com.acceval.workflow.client.WorkflowListenerDelegateParams;
 import com.acceval.workflow.client.signal.SignalCommands;

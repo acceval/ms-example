@@ -1,4 +1,4 @@
-package com.acceval.msexample.type;
+package com.acceval.msexample.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -11,8 +11,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.acceval.msexample.type.Type;
-
 /**
  * Example data class
  *

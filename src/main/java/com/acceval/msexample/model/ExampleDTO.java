@@ -1,7 +1,5 @@
 package com.acceval.msexample.model;
 
-import com.acceval.msexample.type.Type;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;

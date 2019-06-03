@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilde
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
@@ -27,17 +26,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import com.acceval.core.audit.IgnoreAuditScan;
 import com.acceval.core.jackson.module.APIJavaTimeModule;
 import com.acceval.core.service.FileStorageService;
 import com.acceval.msexample.security.CustomUserInfoTokenServices;
-import com.fasterxml.jackson.databind.Module;
 
 import feign.RequestInterceptor;
-
 
 @SpringBootApplication
 @EnableResourceServer
@@ -46,8 +41,9 @@ import feign.RequestInterceptor;
 @EnableDiscoveryClient
 @EnableConfigurationProperties
 @EnableFeignClients
+@SpringBootConfiguration
 @Configuration
-@ComponentScan(basePackages = { "com.acceval" }, excludeFilters = @Filter(IgnoreAuditScan.class))@SpringBootConfiguration
+@ComponentScan(basePackages = { "com.acceval" }, excludeFilters = @Filter(IgnoreAuditScan.class))
 public class MsExampleApplication implements ResourceServerConfigurer {
 
 	@Autowired
@@ -58,34 +54,9 @@ public class MsExampleApplication implements ResourceServerConfigurer {
 	
 	
 	public static void main(String[] args) {
-		// Testing use
+
 		SpringApplication.run(MsExampleApplication.class, args);
-		// testing
-
 	}
-
-	@Bean
-	public Module provideModule() {
-		return new APIJavaTimeModule();
-	}
-
-	@Bean
-	public javax.servlet.Filter someFilterRegistration() {
-		CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
-		loggingFilter.setIncludeClientInfo(true);
-		loggingFilter.setIncludeQueryString(true);
-		loggingFilter.setIncludePayload(true);
-		loggingFilter.setMaxPayloadLength(9999);
-
-		return loggingFilter;
-	}
-
-	@Bean
-	public RestTemplate provideRestTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
-	
-
 
     @Bean
     CommandLineRunner init(FileStorageService storageService) {
@@ -95,23 +66,11 @@ public class MsExampleApplication implements ResourceServerConfigurer {
         };
     }
     
-    @Bean
+	@Bean
 	Jackson2ObjectMapperBuilderCustomizer localDateConverter() {
 		return builder -> builder.modulesToInstall(new APIJavaTimeModule());
 	}
 
-//	@Override
-//	protected String getQueueName() {
-//		// TODO Auto-generated method stub
-//		return LISTENER_QUEUE_NAME;
-//	}
-//
-//	@Override
-//	protected String getExchangeName() {
-//		// TODO Auto-generated method stub
-//		return EXCHANGE_NAME;
-//	}
-	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 
@@ -127,6 +86,7 @@ public class MsExampleApplication implements ResourceServerConfigurer {
 	public RequestInterceptor oauth2FeignRequestInterceptor() {
 		return new OAuth2FeignRequestInterceptor(new DefaultOAuth2ClientContext(), clientCredentialsResourceDetails());
 	}
+
 
 	@Bean
 	public OAuth2RestTemplate clientCredentialsRestTemplate() {

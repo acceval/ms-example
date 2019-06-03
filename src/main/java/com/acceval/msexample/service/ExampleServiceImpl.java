@@ -16,7 +16,7 @@ import com.acceval.core.repository.QueryResult;
 import com.acceval.msexample.model.Example;
 import com.acceval.msexample.model.ExampleDTO;
 import com.acceval.msexample.repository.ExampleRepository;
-import com.acceval.msexample.type.TypeRepository;
+import com.acceval.msexample.repository.TypeRepository;
 
 /**
  * Example service implementation

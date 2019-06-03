@@ -1,6 +1,12 @@
-package com.acceval.msexample.type;
+package com.acceval.msexample.controller;
 
-import com.acceval.core.microservice.model.LabelValue;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,11 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import com.acceval.core.microservice.model.LabelValue;
+import com.acceval.msexample.model.Type;
+import com.acceval.msexample.repository.TypeRepository;
 
 /**
  * TODO: Document this
