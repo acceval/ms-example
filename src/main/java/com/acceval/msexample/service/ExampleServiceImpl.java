@@ -49,7 +49,7 @@ public class ExampleServiceImpl implements ExampleService {
 	@Nonnull
 	@Override
 	public Optional<ExampleDTO> updateExample(long id, ExampleDTO dto) {
-		Optional<Example> example = Optional.of(repository.findOne(id));
+		Optional<Example> example = repository.findById(id);
 		if (!example.isPresent()) {
 			return Optional.empty();
 		}
@@ -61,29 +61,29 @@ public class ExampleServiceImpl implements ExampleService {
 	@Nonnull
 	@Override
 	public Optional<ExampleDTO> getExample(long id) {
-		return Optional.of(ExampleDTO.mapToDTO(repository.findOne(id)));
+		return Optional.of(ExampleDTO.mapToDTO(repository.findById(id).get()));
 	}
 
 	@Override
 	public void deleteExamples(long... id) {
-		Iterable<Example> examples = repository.findAll(Arrays.stream(id).boxed().collect(Collectors.toList()));
+		Iterable<Example> examples = repository.findAllById(Arrays.stream(id).boxed().collect(Collectors.toList()));
 
-		repository.delete(examples);
+		repository.deleteAll(examples);
 	}
 
 	private Example mergeDTO(Example example, ExampleDTO dto) {
 		example.setName(dto.getName());
 		example.setDate(dto.getDate());
 
-		example.setType(typeRepository.findOne(dto.getType()));
-		example.setRadioType(typeRepository.findOne(dto.getRadioType()));
+		example.setType(typeRepository.findById(dto.getType()).get());
+		example.setRadioType(typeRepository.findById(dto.getRadioType()).get());
 
-		example.setType2(toList(typeRepository.findAll(dto.getType2())));
-		example.setCheckboxType(toList(typeRepository.findAll(dto.getCheckboxType())));
+		example.setType2(toList(typeRepository.findAllById(dto.getType2())));
+		example.setCheckboxType(toList(typeRepository.findAllById(dto.getCheckboxType())));
 
 		example.setCheckbox(dto.isCheckbox());
 
-		example.setAutocomplete(typeRepository.findOne(dto.getAutocomplete()));
+		example.setAutocomplete(typeRepository.findById(dto.getAutocomplete()).get());
 
 		return example;
 	}

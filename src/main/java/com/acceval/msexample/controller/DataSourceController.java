@@ -43,7 +43,7 @@ public class DataSourceController {
 	public void initTypes() {
 
 		// init type values
-		repo.save(Arrays.asList(
+		repo.saveAll(Arrays.asList(
 				createType(100000000, "Go", "go"),
 				createType(100000001, "Java", "java"),
 				createType(100000002, "Kotlin", "kt"),

@@ -10,12 +10,13 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceS
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
@@ -31,6 +32,7 @@ import com.acceval.core.audit.IgnoreAuditScan;
 import com.acceval.core.jackson.module.APIJavaTimeModule;
 import com.acceval.core.service.FileStorageService;
 import com.acceval.msexample.security.CustomUserInfoTokenServices;
+import com.acceval.workflow.client.WorkflowClient;
 
 import feign.RequestInterceptor;
 
@@ -43,7 +45,8 @@ import feign.RequestInterceptor;
 @EnableFeignClients
 @SpringBootConfiguration
 @Configuration
-@ComponentScan(basePackages = { "com.acceval" }, excludeFilters = @Filter(IgnoreAuditScan.class))
+@ComponentScan(basePackages = { "com.acceval" }, excludeFilters = {@Filter(IgnoreAuditScan.class), 
+		@Filter(type=FilterType.REGEX, pattern="com\\.acceval\\.workflow\\..*")})
 public class MsExampleApplication implements ResourceServerConfigurer {
 
 	@Autowired

@@ -20,7 +20,7 @@ import java.net.URI;
  *
  * @author Julian
  */
-@Configuration
+//@Configuration
 public class WorkflowConfiguration {
 	@Qualifier(WorkflowQualifiers.EXAMPLE_WORKFLOW_1)
 	@Bean

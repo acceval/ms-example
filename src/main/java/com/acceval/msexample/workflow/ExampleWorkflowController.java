@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@RequestMapping(path = "/workflow")
-@RestController
+//@RequestMapping(path = "/workflow")
+//@RestController
 public class ExampleWorkflowController {
 	private final Workflow workflow1;
 	private final Workflow workflow2;

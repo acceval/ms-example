@@ -3,7 +3,7 @@ package com.acceval.msexample.config;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver {
 
     @Override
