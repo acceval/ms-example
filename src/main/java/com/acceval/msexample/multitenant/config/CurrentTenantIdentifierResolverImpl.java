@@ -1,4 +1,4 @@
-package com.acceval.msexample.config.multitenant;
+package com.acceval.msexample.multitenant.config;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;

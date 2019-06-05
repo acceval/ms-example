@@ -1,4 +1,4 @@
-package com.acceval.msexample.config.multitenant;
+package com.acceval.msexample.multitenant.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +41,6 @@ public class TenantDatabaseConfig {
 
     @Autowired
     private Environment env;
-
 
     @Bean(name = "tenantJpaVendorAdapter")
     public JpaVendorAdapter jpaVendorAdapter() {
@@ -95,6 +94,9 @@ public class TenantDatabaseConfig {
         properties.put(org.hibernate.cfg.Environment.FORMAT_SQL, true);
         properties.put(org.hibernate.cfg.Environment.NON_CONTEXTUAL_LOB_CREATION, true);
         properties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, "update");
+        properties.put(org.hibernate.cfg.Environment.PHYSICAL_NAMING_STRATEGY, 
+        		"com.acceval.core.config.CustomSpringPhysicalNamingStrategy");
+        
 
         emfBean.setJpaPropertyMap(properties);
         

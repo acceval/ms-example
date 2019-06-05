@@ -43,16 +43,16 @@ public class DataSourceController {
 	public void initTypes() {
 
 		// init type values
-		repo.saveAll(Arrays.asList(
-				createType(100000000, "Go", "go"),
-				createType(100000001, "Java", "java"),
-				createType(100000002, "Kotlin", "kt"),
-				createType(100000003, "Groovy", "groovy"),
-				createType(100000004, "Typescript", "ts"),
-				createType(100000005, "Javascript", "js"),
-				createType(100000006, "HTML", "html"),
-				createType(100000007, "CSS", "css")
-		));
+//		repo.saveAll(Arrays.asList(
+//				createType(100000000, "Go", "go"),
+//				createType(100000001, "Java", "java"),
+//				createType(100000002, "Kotlin", "kt"),
+//				createType(100000003, "Groovy", "groovy"),
+//				createType(100000004, "Typescript", "ts"),
+//				createType(100000005, "Javascript", "js"),
+//				createType(100000006, "HTML", "html"),
+//				createType(100000007, "CSS", "css")
+//		));
 	}
 
 	private Type createType(String label, String value) {

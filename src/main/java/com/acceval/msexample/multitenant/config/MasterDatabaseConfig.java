@@ -1,4 +1,4 @@
-package com.acceval.msexample.config.multitenant;
+package com.acceval.msexample.multitenant.config;
 
 import java.util.Properties;
 
@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		basePackages = { "com.acceval.msexample.model", "com.acceval.msexample.repository" }, 
+		basePackages = { "com.acceval.msexample.multitenant.model", "com.acceval.msexample.multitenant.repository" }, 
 		entityManagerFactoryRef = "masterEntityManagerFactory", 
 		transactionManagerRef = "masterTransactionManager"
 		)
@@ -60,8 +60,8 @@ public class MasterDatabaseConfig {
                 new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(masterDataSource());
 
-        em.setPackagesToScan(new String[] { "com.acceval.msexample.model", 
-        	"com.acceval.msexample.repository" });
+        em.setPackagesToScan(new String[] { "com.acceval.msexample.multitenant.model", 
+        	"com.acceval.msexample.multitenant.repository" });
         
         em.setPersistenceUnitName("masterdb-persistence-unit");
 
@@ -95,7 +95,8 @@ public class MasterDatabaseConfig {
         properties.put(org.hibernate.cfg.Environment.FORMAT_SQL, true);
         properties.put(org.hibernate.cfg.Environment.NON_CONTEXTUAL_LOB_CREATION, true);
         properties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, "update");
-        
+        properties.put(org.hibernate.cfg.Environment.PHYSICAL_NAMING_STRATEGY, 
+        		"com.acceval.core.config.CustomSpringPhysicalNamingStrategy");
     	return properties;
     }
     

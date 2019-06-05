@@ -23,8 +23,6 @@ public class Example {
 	private long id = 0;
 	private String name = "";
 	private LocalDate date = LocalDate.MIN;
-
-	//test
 	
 	@ManyToOne
 	private Type type;
@@ -42,8 +40,8 @@ public class Example {
 
 	@ManyToOne
 	private Type autocomplete;
-
 	private boolean checkbox;
+	private String newColumn;
 
 	public long getId() {
 		return id;
@@ -115,6 +113,14 @@ public class Example {
 
 	public void setCheckbox(boolean checkbox) {
 		this.checkbox = checkbox;
+	}
+
+	public String getNewColumn() {
+		return newColumn;
+	}
+
+	public void setNewColumn(String newColumn) {
+		this.newColumn = newColumn;
 	}
 	
 	
