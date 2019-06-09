@@ -26,7 +26,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		basePackages = { "com.acceval.msexample.multitenant.model", "com.acceval.msexample.multitenant.repository" }, 
+		basePackages = { "com.acceval.msexample.multitenant.model", 
+				"com.acceval.msexample.multitenant.repository" }, 
 		entityManagerFactoryRef = "masterEntityManagerFactory", 
 		transactionManagerRef = "masterTransactionManager"
 		)

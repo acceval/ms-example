@@ -3,7 +3,7 @@ package com.acceval.msexample.multitenant.config;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 
-import com.acceval.msexample.config.TenantContext;
+import com.acceval.msexample.multitenant.TenantContext;
 
 public class CurrentTenantIdentifierResolverImpl
         implements CurrentTenantIdentifierResolver {

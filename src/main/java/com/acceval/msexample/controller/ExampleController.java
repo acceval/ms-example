@@ -66,6 +66,20 @@ public class ExampleController {
 		return service.getExample(id).map(ResponseWrapper::ok)
 				.orElseGet(ResponseWrapper::notFound);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/schema-export")
+	public ResponseEntity<ResponseWrapper<Boolean>> exportSchema() {
+		
+		service.exportSchema();
+		return ResponseEntity.ok(new ResponseWrapper<Boolean>(Boolean.valueOf(true)));
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/schema-update")
+	public ResponseEntity<ResponseWrapper<Boolean>> updateSchema() {
+		
+		service.updateSchema();
+		return ResponseEntity.ok(new ResponseWrapper<Boolean>(Boolean.valueOf(true)));
+	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<ResponseWrapper<ExampleDTO>> update(@PathVariable long id, @RequestBody ExampleDTO example) {

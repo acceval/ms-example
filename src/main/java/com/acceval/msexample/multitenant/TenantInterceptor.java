@@ -1,4 +1,4 @@
-package com.acceval.msexample.config;
+package com.acceval.msexample.multitenant;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +19,15 @@ public class TenantInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
 
     	CurrentUser currentUser = PrincipalUtil.getCurrentUser();
-        String tenantId = currentUser.getCompanyCode();
+    	
+    	String tenantId = null;
+    	
+    	if (currentUser != null) {
+    		tenantId = currentUser.getCompanyCode();
+    	} else {
+    		tenantId = request.getHeader(PrincipalUtil.HDRKEY_COMPANYCODE);
+    	}
+    	
         TenantContext.setCurrentTenant(tenantId);
 
         return true;

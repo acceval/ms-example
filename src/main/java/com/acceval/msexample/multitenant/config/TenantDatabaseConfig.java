@@ -97,7 +97,6 @@ public class TenantDatabaseConfig {
         properties.put(org.hibernate.cfg.Environment.PHYSICAL_NAMING_STRATEGY, 
         		"com.acceval.core.config.CustomSpringPhysicalNamingStrategy");
         
-
         emfBean.setJpaPropertyMap(properties);
         
         log.info("tenantEntityManagerFactory set up successfully!");

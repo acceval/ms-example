@@ -16,7 +16,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.acceval.core.security.CurrentUser;
 import com.acceval.core.security.PrincipalUtil;
-import com.acceval.msexample.config.TenantContext;
+import com.acceval.msexample.multitenant.TenantContext;
 import com.acceval.msexample.multitenant.model.MasterTenant;
 import com.acceval.msexample.multitenant.repository.MasterTenantRepository;
 

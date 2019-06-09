@@ -24,4 +24,8 @@ public interface ExampleService {
 	void deleteExamples(long... id);
 
 	@Nonnull Optional<ExampleDTO> getExample(long id);
+	
+	void exportSchema();
+	
+	void updateSchema();
 }

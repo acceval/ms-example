@@ -1,4 +1,4 @@
-package com.acceval.msexample.config;
+package com.acceval.msexample.multitenant;
 
 public interface MultiTenantConstants {
 

@@ -1,7 +1,6 @@
-package com.acceval.msexample.config;
+package com.acceval.msexample.multitenant;
 
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
-import org.springframework.stereotype.Component;
 
 //@Component
 public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver {
