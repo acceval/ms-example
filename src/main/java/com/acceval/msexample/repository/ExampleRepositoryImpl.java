@@ -16,8 +16,8 @@ import javax.persistence.PersistenceContext;
  * @author Julian
  */
 public class ExampleRepositoryImpl extends BaseRepositoryImpl implements BaseRepository {
-	@PersistenceContext
-	private EntityManager entityManager;
+//	@PersistenceContext
+//	private EntityManager entityManager;
 
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
@@ -27,10 +27,10 @@ public class ExampleRepositoryImpl extends BaseRepositoryImpl implements BaseRep
 		return entityManagerFactory;
 	}
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
+//	@Override
+//	protected EntityManager getEntityManager() {
+//		return entityManager;
+//	}
 
 	@Override
 	protected Class<?> getTargetClass() {
